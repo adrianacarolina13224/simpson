@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+            <title>
+                comentario
+            </title>
+        </meta>
+        <center>
+<br>
+<br>
+<br><br>
+<form action="mailto:hernandez.madriana222.1922@gmail.com" method="post" name="form1">
+  <h2> <font color="white"><label for="nombre">Nombre: </label>
+  <input id="nombre" name="nombre" type="text" />
+<br><br>
+  <label for="email">Email: </label>
+  <input id="email" name="nombre" type="text" />
+<br><br>
+  ¿Qué te pareció la página?
+  <textarea id="opinion" name="opinion"></textarea></b></FONT>
+<br><br>
+  <input name="Submit" type="submit" value="Enviar" />
+</form>
+
+ <script>
+            (function(){
+                emailjs.init("<YOUR USER ID>");
+             })();
+            const vue = new Vue({
+                el: '#app',
+                data(){
+                    return {
+                        from_name: '',
+                        from_email: '',
+                        message: '',
+                        subject: '',
+                    }
+                },
+                methods: {
+                    enviar(){
+                        let data = {
+                            from_name: this.from_name,
+                            from_email: this.from_email,
+                            message: this.message,
+                            subject: this.subject,
+                        };
+                        
+                        emailjs.send("<YOUR SERVICE ID>","<YOUR TEMPLATE ID>", data)
+                        .then(function(response) {
+                            if(response.text === 'OK'){
+                                alert('El correo se ha enviado de forma exitosa');
+                            }
+                           console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
+                        }, function(err) {
+                            alert('Ocurrió un problema al enviar el correo');
+                           console.log("FAILED. error=", err);
+                        });
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
+<body background="lo.gif">
